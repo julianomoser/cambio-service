@@ -2,6 +2,8 @@ package br.com.moser.controller;
 
 import br.com.moser.model.Cambio;
 import br.com.moser.service.CambioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import java.math.RoundingMode;
 /**
  * @author Juliano Moser
  */
+@Tag(name = "Cambio endpoint")
 @RestController
 @RequestMapping("cambio-service")
 public class CambioController {
@@ -25,6 +28,7 @@ public class CambioController {
     @Autowired
     private CambioService cambioService;
 
+    @Operation(summary = "Get cambio from currency")
     @GetMapping("/{amount}/{from}/{to}")
     public Cambio getCambio(@PathVariable("amount") BigDecimal amount,
                             @PathVariable("from") String from,
